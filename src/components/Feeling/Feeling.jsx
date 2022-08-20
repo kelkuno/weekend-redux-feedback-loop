@@ -10,12 +10,10 @@ function Feeling () {
 
     const feedbackReducer = useSelector((store)=> store.feedbackReducer);
 
-    let [feedback, setFeedback] = useState({feeling: '', understanding: '', support: '', comments:''})
+    let [feedback, setFeedback] = useState('')
 
     const handleInput = (event) =>{
-        setFeedback({
-            ...feedback, 
-            feeling: event.target.value});
+        setFeedback(event.target.value);
     }//end of handleInput
     const handleNext = () => {
 

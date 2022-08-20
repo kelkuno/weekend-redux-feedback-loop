@@ -1,11 +1,28 @@
 import { useHistory } from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {useState} from 'react';
 
 
 function Supported () {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const feedbackReducer = useSelector((store)=>{store.feedbackReducer});
+
+    let [feedback, setFeedback] = useState('');
+
+    const handleInput = (event) => {
+        setFeedback(event.target.value);
+    
+    }
 
     const handleNext = () => {
+        dispatch({
+            type: 'SET_SUPPORT',
+            payload: feedback
+        })
+
         history.push('/comments');
 
     }//end of handleNext
@@ -19,6 +36,7 @@ function Supported () {
                 id="supported"
                 min="0" 
                 max="10"
+                onChange={handleInput}
             
             />
             <button
