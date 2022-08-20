@@ -1,11 +1,31 @@
 import { useHistory } from 'react-router-dom';
+import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 
 function Understanding () {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const feedbackReducer = useSelector((store)=>{store.feedbackReducer});
+
+    let [feedback, setFeedback] = useState({feeling: '', understanding: '', support: '', comments:''})
+
+    const handleInput = (event) => {
+        setFeedback({
+            ...feedback,
+            understanding: event.target.value
+        })
+        //console.log(feedback);
+    }
 
     const handleNext = () => {
+        dispatch({
+            type: 'SET_UNDERSTANDING',
+            payload: feedback
+        })
+
         history.push('/supported');
 
     }//end of handleNext
@@ -18,6 +38,7 @@ function Understanding () {
                 id="understanding"
                 min="0" 
                 max="10"
+                onChange={handleInput}
             
             />
             <button
