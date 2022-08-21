@@ -15,16 +15,20 @@ function Feeling () {
     const handleInput = (event) =>{
         setFeedback(event.target.value);
     }//end of handleInput
+
     const handleNext = () => {
 
-        dispatch({
-            type: 'SET_FEELING',
-            payload: feedback
-        })
-        console.log(feedbackReducer);
-     
-        history.push('/understanding');
-
+        if(feedback === ''){
+            alert('you must give an answer before proceeding');
+        } else{
+            dispatch({
+                type: 'SET_FEELING',
+                payload: feedback
+            })
+            console.log('feedback', feedback);
+         
+            history.push('/understanding');
+        }
     }//end of handleNext
 
 

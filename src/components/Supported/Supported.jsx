@@ -14,17 +14,18 @@ function Supported () {
 
     const handleInput = (event) => {
         setFeedback(event.target.value);
-    
     }
 
     const handleNext = () => {
-        dispatch({
-            type: 'SET_SUPPORT',
-            payload: feedback
-        })
-
-        history.push('/comments');
-
+        if(feedback ===''){
+            alert('you must provide an answer before moving on')
+        } else {
+            dispatch({
+                type: 'SET_SUPPORT',
+                payload: feedback
+            })
+            history.push('/comments');
+        }
     }//end of handleNext
 
     return (

@@ -18,13 +18,15 @@ function Understanding () {
     }
 
     const handleNext = () => {
-        dispatch({
-            type: 'SET_UNDERSTANDING',
-            payload: feedback
-        })
-
-        history.push('/supported');
-
+        if(feedback===''){
+            alert('you must provide an answer');
+        } else {
+            dispatch({
+                type: 'SET_UNDERSTANDING',
+                payload: feedback
+            })
+            history.push('/supported');
+        }
     }//end of handleNext
     return (
         <>
