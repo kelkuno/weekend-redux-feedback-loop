@@ -8,22 +8,21 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-const feedbackReducer = (state ={feeling: '', understanding: '', support: '', comments:''}, action) => {
+const feedbackReducer = (state = {feeling: '', understanding: '', support: '', comments:''}, action) => {
     if(action.type === 'SET_FEELING'){
         console.log(state);
-        return {...state, feeling: action.payload};
-    
+        return {...state, feeling: parseInt(action.payload)};
     } 
     else if(action.type === 'SET_UNDERSTANDING') {
         console.log(state);
-        return {...state, understanding: action.payload};
+        return {...state, understanding: parseInt(action.payload)};
     }
     else if(action.type === 'SET_SUPPORT') {
         console.log (state);
-        return {...state, support: action.payload};
+        return {...state, support: parseInt(action.payload)};
     }
     else if(action.type === 'SET_COMMENT'){
-        return{...state, comments: action.payload}
+        return {...state, comments: action.payload}
     }
 
 return state;
@@ -32,10 +31,13 @@ return state;
 
 const storeInstance = createStore(
     combineReducers({
-        feedbackReducer
+        feedbackReducer,
     }),
     applyMiddleware(logger),
   );
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={storeInstance}>
+        <App />
+    </Provider>, document.getElementById('root'));
 registerServiceWorker();
